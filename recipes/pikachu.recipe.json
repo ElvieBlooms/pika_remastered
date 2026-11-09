@@ -1,0 +1,84 @@
+{
+  "recipe_format": 1,
+  "kind": "anime_pikachu_cries",
+  "picks": {
+    "cry_04": {
+      "clip": "swsh_PM025_82"
+    },
+    "cry_06": {
+      "clip": "lgpe_445784864"
+    },
+    "cry_10": {
+      "clip": "swsh_PM025_08"
+    },
+    "cry_11": {
+      "clip": "lgpe_215459001"
+    },
+    "cry_20": {
+      "clip": "lgpe_203183059"
+    },
+    "cry_29": {
+      "clip": "lgpe_947572015"
+    },
+    "cry_31": {
+      "clip": "swsh_PM025_86"
+    },
+    "cry_40": {
+      "clip": "lgpe_1047664810"
+    },
+    "cry_01": {
+      "clip": "swsh_PM025_74"
+    },
+    "cry_02": {
+      "clip": "lgpe_985767294"
+    },
+    "cry_03": {
+      "clip": "swsh_PM025_89"
+    },
+    "cry_05": {
+      "clip": "lgpe_382081170"
+    },
+    "cry_09": {
+      "clip": "lgpe_900749416"
+    },
+    "cry_13": {
+      "clip": "lgpe_880197482"
+    },
+    "cry_15": {
+      "clip": "swsh_PM025_35"
+    },
+    "cry_18": {
+      "clip": "lgpe_550925327"
+    },
+    "cry_19": {
+      "clip": "lgpe_12019115"
+    },
+    "cry_25": {
+      "clip": "lgpe_149661829"
+    },
+    "cry_26": {
+      "clip": "lgpe_531242322"
+    },
+    "cry_28": {
+      "clip": "lgpe_12019115"
+    },
+    "cry_33": {
+      "clip": "swsh_PM025_74"
+    },
+    "cry_34": {
+      "clip": "lgpe_403446108"
+    },
+    "cry_35": {
+      "clip": "lgpe_100343863"
+    },
+    "cry_37": {
+      "clip": "lgpe_210424493"
+    },
+    "cry_38": {
+      "clip": "lgpe_1047664810"
+    },
+    "cry_39": {
+      "clip": "swsh_PM025_78"
+    }
+  }
+}

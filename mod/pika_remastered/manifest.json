@@ -1,0 +1,12 @@
+{
+  "id": "pika_remastered",
+  "name": "Pika Remastered",
+  "version": "1.0.0",
+  "api": 2,
+  "entry": "main.lua",
+  "games": [
+    "yellow"
+  ],
+  "category": "AUDIO",
+  "description": "Plays clearer Pikachu clips in place of Pokémon Yellow's 42 bitcrushed partner voice clips, switched with the PIKA REMASTERED option. Slots without a clip keep the game's own sound. No audio is included; you build the clips from your own games."
+}
