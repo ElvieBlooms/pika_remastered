@@ -5,8 +5,11 @@ are found through --source, the same way rank_matches.py finds them. A slot
 left out of the recipe gets no file, so the game keeps its own clip there.
 
 Each clip has the silence at both ends trimmed (40 dB below its peak, 30 ms
-kept either side), a 10 ms fade-out, and its peak held to -0.5 dBFS, then is
-written as Ogg Vorbis at its own sample rate.
+kept either side) and a 10 ms fade-out. It's then raised to --loudness (-9 LUFS
+by default), with a limiter holding peaks at -1 dBFS, and written as Ogg Vorbis
+at its own sample rate. Yellow's 1-bit clips are about as loud as audio gets, and
+the engine scales Pikachu by the SFX volume too, so clips mixed like normal
+voice lines end up far too quiet without this. --loudness off skips it.
 
     python3 build_cries.py recipes/pikachu.recipe.json --source lgpe_ work/lgpe \\
       --out mod/pika_remastered/assets/cries
@@ -20,15 +23,44 @@ import sys
 
 import librosa
 import numpy as np
+import pyloudnorm
 import soundfile as sf
+from scipy.ndimage import minimum_filter1d
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common  # noqa: E402
 
-CEILING = 10 ** (-0.5 / 20)
+CEILING_DB = -1.0
+LOOKAHEAD_MS = 5
+RELEASE_MS = 60
 
 
-def prepare(path):
+def loudness(y, rate):
+    # The meter needs 400 ms, so short clips are padded with silence.
+    short = int(0.4 * rate) - len(y)
+    if short > 0:
+        y = np.concatenate([y, np.zeros(short)])
+    return pyloudnorm.Meter(rate).integrated_loudness(y)
+
+
+def limit(y, rate):
+    """Hold peaks at CEILING_DB, turning down only around each peak."""
+    ceiling = 10 ** (CEILING_DB / 20)
+    needed = np.minimum(1.0, ceiling / np.maximum(np.abs(y), 1e-9))
+    # Looking ahead lets the gain drop before a peak arrives, not on it.
+    reach = max(1, int(rate * LOOKAHEAD_MS / 1000))
+    gain = minimum_filter1d(needed, size=2 * reach + 1)
+    # Gain drops at once and recovers smoothly, so there's no pumping.
+    recover = np.exp(-1.0 / (rate * RELEASE_MS / 1000))
+    smooth = np.empty_like(gain)
+    level = 1.0
+    for i, g in enumerate(gain):
+        level = g if g < level else recover * level + (1 - recover) * g
+        smooth[i] = level
+    return y * np.minimum(smooth, gain)
+
+
+def prepare(path, target):
     y, rate = librosa.load(path, sr=None, mono=True)
     _, (start, end) = librosa.effects.trim(y, top_db=40, frame_length=1024, hop_length=256)
     pad = int(0.03 * rate)
@@ -37,9 +69,8 @@ def prepare(path):
     fade = min(len(y), int(0.01 * rate))
     if fade:
         y[-fade:] *= np.linspace(1, 0, fade)
-    peak = float(np.abs(y).max()) if len(y) else 0.0
-    if peak > CEILING:
-        y *= CEILING / peak
+    if target is not None and len(y):
+        y = limit(y * 10 ** ((target - loudness(y, rate)) / 20), rate)
     return y, rate
 
 
@@ -48,7 +79,17 @@ def main():
     parser.add_argument("recipe")
     common.add_source_args(parser)
     parser.add_argument("--out", required=True, help="usually mod/pika_remastered/assets/cries")
+    parser.add_argument("--loudness", default="-9",
+                        help="target loudness in LUFS (default -9), or 'off' to keep each clip's own level")
     args = parser.parse_args()
+
+    if args.loudness.lower() == "off":
+        target = None
+    else:
+        try:
+            target = float(args.loudness)
+        except ValueError:
+            raise SystemExit(f"--loudness takes a number in LUFS or 'off', not {args.loudness!r}")
 
     picks = json.load(open(args.recipe))["picks"]
     clips = common.index_sources(args.source)
@@ -63,9 +104,9 @@ def main():
 
     os.makedirs(args.out, exist_ok=True)
     for slot, pick in sorted(picks.items()):
-        y, rate = prepare(clips[pick["clip"]])
+        y, rate = prepare(clips[pick["clip"]], target)
         sf.write(os.path.join(args.out, f"{slot}.ogg"), y, rate, format="OGG", subtype="VORBIS")
-        print(f"{slot}  {pick['clip']:<20} {len(y) / rate:.2f}s")
+        print(f"{slot}  {pick['clip']:<20} {len(y) / rate:.2f}s  {loudness(y, rate):.1f} LUFS")
 
 
 if __name__ == "__main__":

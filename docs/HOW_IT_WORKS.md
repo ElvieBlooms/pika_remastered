@@ -33,7 +33,8 @@ gives mods the real `love.audio`. When it loads, the mod:
 Because only the file changes, the engine handles the rest as usual:
 
 - **Timing:** reactions and scenes wait on the clip's real length (`Sound.waitFrames`).
-- **Volume:** **PIKACHU VOL** still applies.
+- **Volume:** **PIKACHU VOL** still applies. It trims Pikachu on top of the SFX volume, so
+  turning SFX down turns Pikachu down too.
 - **Format:** any sample rate, mono or stereo.
 
 ## Limits

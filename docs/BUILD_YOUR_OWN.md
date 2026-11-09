@@ -94,9 +94,12 @@ python3 tools/build_cries.py my.recipe.json \
   --out mod/pika_remastered/assets/cries
 ```
 
-Each clip has the silence at both ends trimmed, a 10 ms fade-out, and its peak held to
--0.5 dBFS, and is saved as `cry_NN.ogg`. A recipe with an unknown clip ID or slot name stops
-before writing anything.
+Each clip has the silence at both ends trimmed and a 10 ms fade-out, then is raised to
+-9 LUFS with a limiter holding peaks at -1 dBFS, and saved as `cry_NN.ogg`. The boost
+matters: Yellow's 1-bit clips are about as loud as audio gets, so clips mixed like normal
+voice lines sound far too quiet next to them. Use `--loudness -12` (or any LUFS value) for a
+different level, or `--loudness off` to keep each clip as it is. A recipe with an unknown
+clip ID or slot name stops before writing anything.
 
 ## Voicing a different partner
 

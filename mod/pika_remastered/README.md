@@ -13,8 +13,8 @@ the clips come from your own games, built with the tools in the repo.
 3. Turn on **PIKA REMASTERED** in the mod's options. It's on by default.
 
 A slot with no clip keeps the game's own sound. The **PIKACHU VOL** slider still sets the
-volume. At startup the log says how many slots have a clip, for example
-`26 of 42 slots have a replacement`.
+volume, on top of the SFX volume, so turning SFX down turns Pikachu down too. At startup
+the log says how many slots have a clip, for example `26 of 42 slots have a replacement`.
 
 ## Limits
 
