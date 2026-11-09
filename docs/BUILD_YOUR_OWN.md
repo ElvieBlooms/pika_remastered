@@ -1,8 +1,8 @@
 # Build your own
 
-Three ways to use the tools: rebuild my picks, make your own, or voice a different partner.
-Every clip comes from games you own. This guide starts from game files you already have and
-doesn't cover dumping or decrypting games.
+The mod already comes with my picks. These tools are for swapping clips, making a whole set
+of your own, or voicing a different partner. Every clip comes from games you own. This guide
+starts from game files you already have and doesn't cover dumping or decrypting games.
 
 ## Setup
 

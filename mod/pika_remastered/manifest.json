@@ -4,9 +4,19 @@
   "version": "1.0.0",
   "api": 2,
   "entry": "main.lua",
+  "profile": "content",
+  "game_version": ">=0.4.0",
+  "category": "AUDIO",
+  "priority": 100,
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "incompatible": [],
+  "experimental": false,
+  "permissions": [],
+  "description": "Clearer Pikachu voice clips in place of Pokémon Yellow's 42 bitcrushed partner clips, switched with the PIKA REMASTERED option. Comes with clips for the 26 slots the game plays, from Pokémon: Let's Go, Pikachu! and Pokémon Sword and Shield.",
+  "github": "ElvieBlooms/pika_remastered",
   "games": [
     "yellow"
-  ],
-  "category": "AUDIO",
-  "description": "Plays clearer Pikachu clips in place of Pokémon Yellow's 42 bitcrushed partner voice clips, switched with the PIKA REMASTERED option. Slots without a clip keep the game's own sound. No audio is included; you build the clips from your own games."
+  ]
 }

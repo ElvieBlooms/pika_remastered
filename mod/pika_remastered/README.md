@@ -1,20 +1,24 @@
 # Pika Remastered
 
 Plays clearer Pikachu clips in place of Pokémon Yellow's 42 bitcrushed partner voice clips.
-Switch it on and off with the **PIKA REMASTERED** option. This folder has no audio in it;
-the clips come from your own games, built with the tools in the repo.
+Switch it on and off with the **PIKA REMASTERED** option. It comes with clips for the 26 slots
+the game plays, from Pokémon: Let's Go, Pikachu! and Pokémon Sword and Shield.
 
 ## Setting it up
 
-1. Put clips in `assets/cries/`, named by slot: `cry_01.ogg` to `cry_42.ogg`. `.wav`, `.mp3`
-   and `.flac` work too. `docs/CLIP_GUIDE.md` in the repo says where each slot plays, and
-   `tools/build_cries.py` makes this folder from a recipe.
-2. Copy this folder into your gen1recomp `mods/` folder and restart the game.
-3. Turn on **PIKA REMASTERED** in the mod's options. It's on by default.
+1. Copy this folder into your gen1recomp `mods/` folder and restart the game.
+2. **PIKA REMASTERED** is on by default; turn it off in the mod's options to hear the originals.
 
 A slot with no clip keeps the game's own sound. The **PIKACHU VOL** slider still sets the
 volume, on top of the SFX volume, so turning SFX down turns Pikachu down too. At startup
 the log says how many slots have a clip, for example `26 of 42 slots have a replacement`.
+
+## Changing clips
+
+Clips live in `assets/cries/`, named by slot: `cry_01.ogg` to `cry_42.ogg`. `.wav`, `.mp3`
+and `.flac` work too. Replace or delete any of them; a deleted slot plays Yellow's original.
+`docs/CLIP_GUIDE.md` in the repo says where each slot plays, and the repo's tools build a
+whole set from your own games.
 
 ## Limits
 
@@ -23,3 +27,9 @@ the log says how many slots have a clip, for example `26 of 42 slots have a repl
 - Built for engine 0.4.0. If a later engine loads the clips another way, the mod does
   nothing and the originals play.
 - The Pokémon Box's Pikachu cry isn't replaced.
+
+## Credits
+
+Pikachu's voice is Ikue Ōtani's, from Pokémon: Let's Go, Pikachu! and Pokémon Sword and
+Shield by Game Freak, Nintendo and The Pokémon Company, used without permission in a free
+fan project and removed on request. The engine is gen1recomp by bryanthaboi.

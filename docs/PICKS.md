@@ -2,7 +2,7 @@
 
 My picks for the 26 slots the game plays, chosen by ear, from Pokémon: Let's Go,
 Pikachu! (by media ID) and Pokémon Sword and Shield (by line number). The recipe that
-builds them is `recipes/pikachu.recipe.json`. The 16 slots that never play are left empty.
+builds them is `recipes/pikachu.recipe.json`. These are the clips in `mod/pika_remastered/assets/cries/`. The 16 slots that never play are left empty.
 
 | Slot | Where it plays | Source | Length |
 |---|---|---|---|
