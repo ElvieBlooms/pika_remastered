@@ -1,15 +1,10 @@
 # Pika Remastered
 
-Pokémon Yellow's partner Pikachu talks in 42 short voice clips, stored as 1-bit audio that
+Pokémon Yellow's partner Pikachu talks in 42 (26 actually happen in game) short voice clips, stored as 1-bit audio that
 sounds crushed and hissy. Pika Remastered plays clearer Pikachu clips in their place, one
 slot at a time, and you can switch back to the originals with the **PIKA REMASTERED** option.
 
 It's a mod for [gen1recomp](https://github.com/bryanthaboi/gen1recomp), built on engine 0.4.0.
-
-**No audio is included.** Not Yellow's clips, and nothing from any other game. You make the
-clips from your own copies of Pokémon: Let's Go, Pikachu! and Pokémon Sword and Shield,
-using the tools here, and you keep them to yourself. This repo holds the mod code, the
-tools, the docs, and my picks as a list of clip IDs.
 
 ## What you get
 
@@ -24,7 +19,7 @@ tools, the docs, and my picks as a list of clip IDs.
 
 | Path | What it is |
 |---|---|
-| `mod/pika_remastered/` | The mod, with an empty `assets/cries/` for your clips. |
+| `mod/pika_remastered/` | The mod|
 | `recipes/pikachu.recipe.json` | My picks: which clip goes in each slot, by clip ID. |
 | `tools/` | Python tools that decode Let's Go voice banks, rank clips against Yellow's, lay them out for listening, and build `assets/cries/` from a recipe. |
 | `docs/CLIP_GUIDE.md` | All 42 slots, how long each original is, and where it plays. |
@@ -64,7 +59,7 @@ Copy `mod/pika_remastered/` into your gen1recomp `mods/` folder and restart the 
 - [gen1recomp](https://github.com/bryanthaboi/gen1recomp) by bryanthaboi, the engine this mod runs on.
 - Pikachu is voiced by Ikue Ōtani in the games the clips come from. The clips are read from
   your own copies of Pokémon: Let's Go, Pikachu! and Pokémon Sword and Shield (Game Freak,
-  Nintendo, The Pokémon Company); none are shipped here.
+  Nintendo, The Pokémon Company.
 
 ## Licence
 
