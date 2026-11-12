@@ -17,6 +17,8 @@ Pokémon: Let's Go, Pikachu! and Pokémon Sword and Shield. Nothing from Yellow 
 - The game's **PIKACHU VOL** slider still sets the volume. It works on top of the SFX
   volume, so keep SFX up and use **PIKACHU VOL** to balance Pikachu against the rest.
 - Any slot without a clip keeps the game's own sound.
+- Five achievements when [Recomp Achievements](https://github.com/ElvieBlooms/recomp_achievements)
+  is installed, under the **PIKA** tab. Without it, nothing changes.
 
 ## Installing
 
@@ -34,6 +36,21 @@ Copy `mod/pika_remastered/` into your gen1recomp `mods/` folder and restart the 
 | `docs/PICKS.md` | My picks, with where each clip came from. |
 | `docs/HOW_IT_WORKS.md` | How the mod hooks into the engine, and its limits. |
 | `docs/BUILD_YOUR_OWN.md` | Making your own set from your games, or voicing a different partner such as Eevee. |
+
+## Achievements
+
+With Recomp Achievements 1.0 or newer installed, Pika Remastered adds these to its menu:
+
+| Achievement | Points | How |
+|---|---|---|
+| Pika, Remastered | 2 | Hear Pikachu's new voice for the first time. |
+| Chatterbox | 10 | Hear the new voice 100 times. |
+| Full Vocabulary | 25 | Hear all 26 remastered clips in one save. Oak's Lab only comes round once. |
+| Sweet Dreams | 5 | Hear Pikachu talk in its sleep. |
+| ??? | 3 | Hidden. It involves the 1-bit original. |
+
+Clips heard on the title screen count once a save is loaded. Each save keeps its own list,
+so a new game starts Full Vocabulary over.
 
 ## Making your own set
 

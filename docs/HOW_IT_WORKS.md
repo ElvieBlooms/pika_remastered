@@ -37,6 +37,21 @@ Because only the file changes, the engine handles the rest as usual:
   turning SFX down turns Pikachu down too.
 - **Format:** any sample rate, mono or stereo.
 
+## Achievements
+
+`achievements.lua` connects to Recomp Achievements through its provider API when it's
+installed (an optional dependency in `manifest.json`), and does nothing when it isn't.
+
+- **Counting clips:** the engine's `sound.played` event names each Pikachu clip
+  `PIKACHU_PCM_<slot>`. A clip counts when **PIKA REMASTERED** is on and the slot has a
+  replacement. With the option off, the original plays and counts toward the hidden one.
+- **Full Vocabulary:** which slots you've heard is kept per save in `mod.save`, as a
+  42-character string of 0s and 1s, and the progress is set from it whenever a save loads.
+- **The title screen:** clips there play before a save is attached, so they're held and
+  counted on the framework's `ready` event.
+- **Problems stay contained:** the achievements load inside `pcall`, so an error in them
+  logs a warning and the clips still play.
+
 ## Limits
 
 - **Restarting:** each clip stays loaded after its first play, so switching the option

@@ -13,6 +13,11 @@ A slot with no clip keeps the game's own sound. The **PIKACHU VOL** slider still
 volume, on top of the SFX volume, so turning SFX down turns Pikachu down too. At startup
 the log says how many slots have a clip, for example `26 of 42 slots have a replacement`.
 
+## Achievements
+
+With Recomp Achievements installed, there are five achievements under the **PIKA** tab,
+one of them hidden. Without it, the mod works the same and adds none.
+
 ## Changing clips
 
 Clips live in `assets/cries/`, named by slot: `cry_01.ogg` to `cry_42.ogg`. `.wav`, `.mp3`

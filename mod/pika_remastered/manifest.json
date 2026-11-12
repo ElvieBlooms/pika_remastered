@@ -1,7 +1,7 @@
 {
   "id": "pika_remastered",
   "name": "Pika Remastered",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "api": 2,
   "entry": "main.lua",
   "profile": "content",
@@ -9,7 +9,9 @@
   "category": "AUDIO",
   "priority": 100,
   "dependencies": [],
-  "optional_dependencies": [],
+  "optional_dependencies": [
+    "recomp_achievements@>=1.0.0"
+  ],
   "conflicts": [],
   "incompatible": [],
   "experimental": false,

@@ -5,7 +5,8 @@
 -- caches it. There's no mod hook for that, so this wraps love.audio.newSource
 -- and points those 42 paths at assets/cries/cry_NN.* in this folder.
 -- Every other sound passes straight through, and a slot with no file keeps
--- the game's own clip.
+-- the game's own clip. achievements.lua adds achievements when Recomp
+-- Achievements is installed.
 -- ------------------
 
 local CLIP_COUNT = 42
@@ -13,6 +14,15 @@ local EXTENSIONS = { "ogg", "wav", "mp3", "flac" }
 local CLIP_PATH = "pika_cries[/\\]cry_(%d%d)%.wav$"
 
 -- Finds which slots have a file, keyed by slot number.
+-- Loads one of our own files inside the mod's sandbox, whatever the folder is called.
+local function import(mod, path)
+  local source = mod:read(path)
+  assert(source, "pika_remastered: missing file " .. path)
+  local chunk, err = load(source, "@" .. mod.id .. "/" .. path)
+  assert(chunk, err)
+  return chunk()
+end
+
 local function findClips(mod)
   local ok, names = pcall(mod.list, mod, "assets/cries")
   if not ok or type(names) ~= "table" then return {}, 0 end
@@ -40,6 +50,13 @@ return function(mod)
     { key = "enabled", type = "toggle", label = "PIKA REMASTERED", default = true },
   })
 
+  -- Read at play time, so the toggle reaches any clip that hasn't played yet.
+  local function enabled()
+    local ok, value = pcall(mod.options.get, mod.options, "enabled")
+    if not ok or value == nil then return true end
+    return value and true or false
+  end
+
   local clips, count = findClips(mod)
   mod.log:info("%d of %d slots have a replacement", count, CLIP_COUNT)
   if count == 0 then return end
@@ -50,12 +67,9 @@ return function(mod)
     return
   end
 
-  -- Read at play time, so the toggle reaches any clip that hasn't played yet.
-  local function enabled()
-    local ok, value = pcall(mod.options.get, mod.options, "enabled")
-    if not ok or value == nil then return true end
-    return value and true or false
-  end
+  -- Achievements are a bonus, so a problem in them never stops the clips.
+  local ok, err = pcall(function() import(mod, "achievements.lua")(mod, clips, enabled) end)
+  if not ok then mod.log:warn("achievements are off: %s", tostring(err)) end
 
   local newSource = audio.newSource
   audio.newSource = function(source, ...)
