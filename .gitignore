@@ -1,0 +1,19 @@
+# Never commit game audio or game files
+*.wav
+*.ogg
+*.mp3
+*.flac
+*.wem
+*.bnk
+*.xci
+*.nsp
+*.zip
+
+# Except the mod's own clips
+!mod/pika_remastered/assets/cries/*.ogg
+
+# Working folders
+work/
+__pycache__/
+*.pyc
+.DS_Store
